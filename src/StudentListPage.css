@@ -1,0 +1,12 @@
+.student-table th{
+    border: solid 1px black;
+    background-color: bisque;
+}
+
+.student-table tr {
+    border: solid 1px black;
+}
+
+.student-table td{
+    border: solid 1px black;
+}

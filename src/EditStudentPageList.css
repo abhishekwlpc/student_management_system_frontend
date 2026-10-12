@@ -1,0 +1,12 @@
+.student-table-with-edit th{
+    border: solid 1px black;
+    background-color: bisque;
+}
+
+.student-table-with-edit tr {
+    border: solid 1px black;
+}
+
+.student-table-with-edit td{
+    border: solid 1px black;
+}

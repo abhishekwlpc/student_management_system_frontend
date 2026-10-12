@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "./CreateStudentPage.css";
+import { useNavigate } from "react-router-dom";
 
 function CreateStudentPage() {
   const [studentData, setStudentData] = useState({
@@ -15,7 +16,7 @@ function CreateStudentPage() {
     guardianRelationship: "",
     guardianTelephone: "",
   });
-  const [studentCreatedStatus, setStudentCreatedStatus] = useState(false);
+  const navigate = useNavigate();
 
   function createNewStudent(e) {
     const { name, value } = e.target;
@@ -72,24 +73,14 @@ function CreateStudentPage() {
         "http://localhost:8080/api/v1/student",
         newStudentDetails,
       );
-      setStudentCreatedStatus(true);
+
+      alert("Student Created SuccessFully!");
+      navigate("/students");
     } catch (error) {
       console.log("Error updating data: ", error);
-      setStudentCreatedStatus(false);
+      alert("Student Creation Failed, Try again!");
+      navigate("/add");
     }
-
-    // setStudentData({
-    //   username: "",
-    //   email: "",
-    //   registrationNumber: "",
-    //   firstName: "",
-    //   lastName: "",
-    //   birthDate: "",
-    //   address: "",
-    //   guardianName: "",
-    //   guardianRelationship: "",
-    //   guardianTelephone: "",
-    // });
   }
 
   return (

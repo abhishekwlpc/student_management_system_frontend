@@ -1,0 +1,12 @@
+.student-table-with-delete th{
+    border: solid 1px black;
+    background-color: bisque;
+}
+
+.student-table-with-delete tr {
+    border: solid 1px black;
+}
+
+.student-table-with-delete td{
+    border: solid 1px black;
+}

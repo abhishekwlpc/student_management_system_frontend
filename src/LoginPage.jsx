@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "./context/AuthContext";
+import apiClient, { setAccessToken } from "./apiClient";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -10,7 +10,7 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { authentication, setAuthentication } = useContext(AuthContext);
+  const { setAuthentication } = useContext(AuthContext);
 
   function setLoginCredentials(e) {
     const { name, value } = e.target;
@@ -31,10 +31,8 @@ function LoginPage() {
     try {
       setLoading(true);
       setErrorMessage("");
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/auth/login",
-        logindetails,
-      );
+      const response = await apiClient.post("/api/v1/auth/login", logindetails);
+      setAccessToken(response.data.accessToken);
       const authenticatedValues = {
         accessToken: response.data.accessToken,
         username: response.data.username,

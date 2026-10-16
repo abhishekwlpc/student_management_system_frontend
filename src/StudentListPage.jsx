@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import "./StudentListPage.css";
+import apiClient from "./apiClient";
 
 function StudentListPage() {
   const [students, setStudents] = useState([]);
@@ -11,9 +11,7 @@ function StudentListPage() {
     const fetchStudents = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(
-          "http://localhost:8080/api/v1/students",
-        );
+        const response = await apiClient.get("api/v1/students");
         setStudents(response.data);
       } catch (error) {
         setErrorFetchingStudents(error);

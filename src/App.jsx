@@ -5,20 +5,72 @@ import EditStudentPageList from "./EditStudentPageList";
 import EditStudentPage from "./EditStudentPage";
 import DeleteStudentPage from "./DeleteStudentPage";
 import LoginPage from "./LoginPage";
-import { AuthProvider } from "./context/AuthContext";
 import HomePage from "./HomePage";
+import StudentProfilePage from "./StudentProfilePage";
+import ProtectedRoute from "./ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/add" element={<CreateStudentPage />} />
-        <Route path="/students" element={<StudentListPage />} />
-        <Route path="/edit" element={<EditStudentPageList />} />
-        <Route path="/editStudent" element={<EditStudentPage />} />
-        <Route path="/deleteStudent" element={<DeleteStudentPage />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/add"
+          element={
+            <ProtectedRoute>
+              <CreateStudentPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/students"
+          element={
+            <ProtectedRoute>
+              <StudentListPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profileStudent"
+          element={
+            <ProtectedRoute>
+              <StudentProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/edit"
+          element={
+            <ProtectedRoute>
+              <EditStudentPageList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/editStudent"
+          element={
+            <ProtectedRoute>
+              <EditStudentPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/deleteStudent"
+          element={
+            <ProtectedRoute>
+              <DeleteStudentPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </AuthProvider>
   );
